@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chahat — DevOps Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f8f8f6;
+        --ink: #111111;
+        --mid: #888888;
+        --faint: #dadad6;
+        --accent: #2e9e8e;
+        --mono: "DM Mono", monospace;
+        --sans: "Inter", sans-serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Layout ── */
+      .container {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* ── Nav ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(248, 248, 246, 0.85);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--faint);
+      }
+
+      nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+      }
+
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--accent);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+
+      /* ── Hero ── */
+      #hero {
+        padding: 9rem 0 5rem;
+      }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+
+      h1 {
+        font-family: var(--mono);
+        font-size: clamp(2.4rem, 6vw, 3.6rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.6rem;
+      }
+
+      /* Signature element — blinking cursor */
+      .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 0.85em;
+        background: var(--accent);
+        vertical-align: middle;
+        margin-left: 4px;
+        animation: blink 1.1s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .hero-bio {
+        font-size: 1.05rem;
+        color: var(--mid);
+        max-width: 480px;
+        margin-bottom: 2.4rem;
+        line-height: 1.75;
+      }
+
+      .hero-bio strong {
+        color: var(--ink);
+        font-weight: 400;
+      }
+
+      .hero-links {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        padding: 0.55rem 1.1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent);
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--faint);
+        color: var(--mid);
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+
+      /* ── Section shared ── */
+      section {
+        padding: 4rem 0;
+        border-top: 1px solid var(--faint);
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-bottom: 2.4rem;
+      }
+
+      /* ── Skills ── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2rem 3rem;
+      }
+
+      .skill-group h3 {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--accent);
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.04em;
+      }
+
+      .skill-group ul {
+        list-style: none;
+      }
+
+      .skill-group ul li {
+        font-size: 0.9rem;
+        color: var(--mid);
+        padding: 0.2rem 0;
+        border-bottom: 1px solid var(--faint);
+      }
+
+      .skill-group ul li:last-child {
+        border-bottom: none;
+      }
+
+      /* ── Projects ── */
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .project-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+        gap: 1rem;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--faint);
+        cursor: default;
+        transition: padding-left 0.2s;
+      }
+
+      .project-item:last-child {
+        border-bottom: none;
+      }
+      .project-item:hover {
+        padding-left: 0.5rem;
+      }
+
+      .project-name {
+        font-size: 0.95rem;
+        font-weight: 400;
+        margin-bottom: 0.25rem;
+      }
+
+      .project-desc {
+        font-size: 0.85rem;
+        color: var(--mid);
+        line-height: 1.6;
+      }
+
+      .project-tags {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        padding-top: 0.15rem;
+      }
+
+      .tag {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.04em;
+        padding: 0.2rem 0.55rem;
+        border: 1px solid var(--faint);
+        border-radius: 2px;
+        color: var(--mid);
+        white-space: nowrap;
+      }
+
+      /* ── Experience ── */
+      .experience-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .exp-item {
+      }
+
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.35rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .exp-role {
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
+
+      .exp-period {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--mid);
+        letter-spacing: 0.04em;
+      }
+
+      .exp-company {
+        font-size: 0.82rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+        font-family: var(--mono);
+      }
+
+      .exp-desc {
+        font-size: 0.88rem;
+        color: var(--mid);
+        line-height: 1.7;
+      }
+
+      /* ── Contact ── */
+      #contact {
+        border-bottom: 1px solid var(--faint);
+      }
+
+      .contact-line {
+        font-size: 1.05rem;
+        color: var(--mid);
+        margin-bottom: 2rem;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: var(--mono);
+        font-size: 0.82rem;
+      }
+
+      .contact-key {
+        color: var(--mid);
+        min-width: 80px;
+      }
+
+      .contact-val {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+
+      .contact-val:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* ── Footer ── */
+      footer {
+        padding: 2rem 0;
+      }
+
+      footer .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .footer-copy {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--mid);
+        letter-spacing: 0.04em;
+      }
+
+      .footer-back {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+
+      .footer-back:hover {
+        color: var(--accent);
+      }
+
+      /* ── Scroll reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Mobile ── */
+      @media (max-width: 560px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem 1.5rem;
+        }
+        .project-item {
+          grid-template-columns: 1fr;
+        }
+        .project-tags {
+          justify-content: flex-start;
+        }
+        footer .container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cursor {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Nav ── -->
+    <nav>
+      <div class="container">
+        <a href="#hero" class="nav-logo">chahat.dev</a>
+        <ul class="nav-links">
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section id="hero">
+      <div class="container">
+        <p class="eyebrow">DevOps Engineer</p>
+        <h1>Chahat<span class="cursor"></span></h1>
+        <p class="hero-bio">
+          Building reliable systems and automating everything in between.
+          Focused on <strong>Linux</strong>, <strong>Docker</strong>, and
+          <strong>cloud infrastructure</strong> — currently working toward a
+          career in DevOps with hands-on experience in containerization, shell
+          scripting, and AWS architecture.
+        </p>
+        <div class="hero-links">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Skills ── -->
+    <section id="skills">
+      <div class="container reveal">
+        <p class="section-label">Skills</p>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Linux</h3>
+            <ul>
+              <li>Ubuntu / Arch</li>
+              <li>Bash scripting</li>
+              <li>systemd</li>
+              <li>File permissions</li>
+              <li>Networking</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Containers</h3>
+            <ul>
+              <li>Docker</li>
+              <li>Docker Desktop</li>
+              <li>Docker Compose</li>
+              <li>Image builds</li>
+              <li>WSL 2</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Cloud</h3>
+            <ul>
+              <li>AWS (EC2, S3, RDS)</li>
+              <li>IAM</li>
+              <li>Architecture design</li>
+              <li>Cost analysis</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Tools</h3>
+            <ul>
+              <li>Git</li>
+              <li>Zsh / Oh My Zsh</li>
+              <li>GRUB</li>
+              <li>Draw.io</li>
+              <li>Python / Flask</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Projects ── -->
+    <section id="projects">
+      <div class="container reveal">
+        <p class="section-label">Projects</p>
+        <div class="project-list">
+          <div class="project-item">
+            <div>
+              <p class="project-name">Flask IP Logger API</p>
+              <p class="project-desc">
+                A containerized REST API built with Flask that logs client IP
+                addresses. Full Docker workflow — build, run, and cleanup.
+                Deployed on Ubuntu 25.04.
+              </p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Flask</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div>
+              <p class="project-name">Nesera Arts & Craft — AWS Architecture</p>
+              <p class="project-desc">
+                Designed and documented an AWS cloud infrastructure for a client
+                project. Produced a Draw.io architecture diagram, PowerPoint
+                presentation, and cost analysis.
+              </p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">AWS</span>
+              <span class="tag">Draw.io</span>
+              <span class="tag">Cloud</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div>
+              <p class="project-name">Triple-Boot Dev Machine</p>
+              <p class="project-desc">
+                Configured a triple-boot system with Ubuntu, Arch Linux, and
+                Windows on an HP laptop. Custom GRUB setup, ZSH theming, and
+                Docker on Ubuntu 25.04 with KVM workarounds.
+              </p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Linux</span>
+              <span class="tag">GRUB</span>
+              <span class="tag">Sysadmin</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div>
+              <p class="project-name">Linux DevOps Study Notes</p>
+              <p class="project-desc">
+                Comprehensive self-study notes covering the boot process,
+                filesystem hierarchy, systemd, shell scripting, networking, and
+                bash with error handling.
+              </p>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Linux</span>
+              <span class="tag">Bash</span>
+              <span class="tag">systemd</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section id="experience">
+      <div class="container reveal">
+        <p class="section-label">Experience</p>
+        <div class="experience-list">
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">DevOps Learner (Self-directed)</span>
+              <span class="exp-period">2024 — present</span>
+            </div>
+            <p class="exp-company">Independent</p>
+            <p class="exp-desc">
+              Daily hands-on Linux practice across Ubuntu and Arch Linux
+              environments. Structured learning covering terminal navigation,
+              shell scripting, service management, Docker containerization, and
+              AWS cloud architecture.
+            </p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <span class="exp-role">Cloud Architecture Consultant</span>
+              <span class="exp-period">2025</span>
+            </div>
+            <p class="exp-company">Nesera Arts & Craft (Client Project)</p>
+            <p class="exp-desc">
+              Designed an AWS cloud architecture tailored to the client's needs.
+              Delivered infrastructure diagrams, a technical presentation, and a
+              cost analysis for stakeholder review.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact">
+      <div class="container reveal">
+        <p class="section-label">Contact</p>
+        <p class="contact-line">
+          Open to DevOps roles, freelance infrastructure work, and
+          collaborations.
+        </p>
+        <div class="contact-links">
+          <div class="contact-row">
+            <span class="contact-key">email</span>
+            <a href="mailto:chahat.bs01@gmail.com" class="contact-val"
+              >chahat@example.com</a
+            >
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">github</span>
+            <a
+              href="https://github.com/lilchahat"
+              target="_blank"
+              rel="noopener"
+              class="contact-val"
+              >github.com/chahat</a
+            >
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">linkedin</span>
+            <a
+              href="https://www.linkedin.com/in/chahat-r-s-rathour-414906338/"
+              target="_blank"
+              rel="noopener"
+              class="contact-val"
+              >linkedin.com/in/chahat</a
+            >
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">location</span>
+            <span
+              class="contact-val"
+              style="border-bottom: none; cursor: default"
+              >Kathmandu, Nepal</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <div class="container">
+        <span class="footer-copy">© 2026 Chahat</span>
+        <a href="#hero" class="footer-back">↑ back to top</a>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // Smooth active nav highlight
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-links a");
+
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              navLinks.forEach((a) => {
+                a.style.color =
+                  a.getAttribute("href") === `#${e.target.id}`
+                    ? "var(--ink)"
+                    : "";
+              });
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+
+      sections.forEach((s) => navObserver.observe(s));
+    </script>
+  </body>
+</html>
